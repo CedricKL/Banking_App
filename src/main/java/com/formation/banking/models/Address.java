@@ -5,17 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @Entity
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class Address extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+//    @Id
+//    @GeneratedValue
+//    private Integer id;
 
     private String country;
 

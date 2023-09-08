@@ -6,21 +6,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 
 @Data
 @Entity
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "UserApp")
-public class User {
+public class User extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private  Integer id;
+//    @Id
+//    @GeneratedValue
+//    private  Integer id;
 
     private String firstname;
 
