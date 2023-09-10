@@ -3,8 +3,6 @@ package com.formation.banking.dto;
 import com.formation.banking.models.Transaction;
 import com.formation.banking.models.TransactionType;
 import com.formation.banking.models.User;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
