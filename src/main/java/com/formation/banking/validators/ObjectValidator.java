@@ -1,6 +1,7 @@
-package com.formation.banking;
+package com.formation.banking.validators;
 
 
+import com.formation.banking.exceptions.ObjectValidationException;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolation;
@@ -20,6 +21,7 @@ public class ObjectValidator<T> {
         Set<ConstraintViolation<T>> violations = validator.validate(objectToValidate);
         if(!violations.isEmpty()){
             Set<String> messages = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.toSet());    // Stream uses and lambda
+            throw new ObjectValidationException(messages, objectToValidate.getClass().getName());
         }
 
     }
