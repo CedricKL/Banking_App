@@ -48,4 +48,12 @@ public class TransactionServiceImpl implements TransactionService {
         // May be a way to cancel but not delete. So we choose deleting
         repository.deleteById(id);
     }
+
+    @Override
+    public List<TransactionDto> findAllByUserId(Integer id) {
+        return repository.findAllByUserId(id)
+                .stream()
+                .map(TransactionDto::fromEntity)
+                .collect(Collectors.toList());
+    }
 }
