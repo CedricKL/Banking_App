@@ -22,6 +22,13 @@ public class AccountServiceImpl implements AccountService {
     private final ObjectValidator<AccountDto> validator;
     @Override
     public Integer save(AccountDto dto) {
+        // Check if there's an account for the user (Rule)
+        if(repository.findByUserId(dto.getUserDto().getId()).isPresent())
+            throw new OperationNonPermittedException(
+                    "The user has already an account",
+                    "Create account",
+                    "validateAccount UserService"
+            );
         // Iban from an account should be generated and cannot be changed after creation
         if(dto.getId() != null)
             throw new OperationNonPermittedException("Account cannot be changed", "Save: " + this.getClass() ,"");

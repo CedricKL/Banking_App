@@ -1,7 +1,10 @@
 package com.formation.banking.Impl;
 
+import com.formation.banking.dto.AccountDto;
 import com.formation.banking.dto.UserDto;
+import com.formation.banking.models.User;
 import com.formation.banking.repositories.UserRepository;
+import com.formation.banking.services.AccountService;
 import com.formation.banking.services.UserService;
 import com.formation.banking.validators.ObjectValidator;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository; //autowired by Spring
+    private final AccountService accountService;
     private final ObjectValidator<UserDto> validator; //autowired by Spring
 
     @Override
@@ -44,5 +48,27 @@ public class UserServiceImpl implements UserService {
     public void delete(Integer id) {
         // todo check relation with others objects
         repository.deleteById(id);
+    }
+
+    @Override
+    public Integer validateAccount(Integer id) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user found for this id : " + id));
+        AccountDto dto = AccountDto.builder()
+                .userDto(UserDto.fromEntity(user))
+                .build();
+        Integer accountId = accountService.save(dto);
+        user.setActive(true);
+        repository.save(user);
+        return accountId;
+    }
+
+    @Override
+    public Integer invalidateAccount(Integer id) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No user found for this id : " + id));
+        user.setActive(true);
+        repository.save(user);
+        return user.getId();
     }
 }
