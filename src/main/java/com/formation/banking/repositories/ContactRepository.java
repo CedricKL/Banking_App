@@ -1,7 +1,11 @@
 package com.formation.banking.repositories;
 
+import com.formation.banking.dto.ContactDto;
 import com.formation.banking.models.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface ContactRepository extends JpaRepository<Contact,Integer> {
+    List<Contact> findAllByUserId(Integer id);
 }
