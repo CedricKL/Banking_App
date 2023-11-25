@@ -26,13 +26,13 @@ public class AccountController {
         return ResponseEntity.ok(accountService.findAll());
     }
 
-    @GetMapping("/{user-id}")
-    public ResponseEntity<AccountDto> findAById(@PathVariable("user-id") Integer userId){
+    @GetMapping("/{account-id}")
+    public ResponseEntity<AccountDto> findAById(@PathVariable("account-id") Integer userId){
         return ResponseEntity.ok(accountService.findById(userId));
     }
 
-    @DeleteMapping("/{user-id}")
-    public ResponseEntity<Void> delete(@PathVariable("user-id") Integer userId){
+    @DeleteMapping("/{account-id}")
+    public ResponseEntity<Void> delete(@PathVariable("account-id") Integer userId){
         accountService.delete(userId);
         return ResponseEntity.accepted().build();  // to show that our request has been treated
     }
