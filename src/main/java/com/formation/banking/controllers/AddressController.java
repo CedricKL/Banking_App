@@ -26,13 +26,13 @@ public class AddressController {
     }
 
     @GetMapping("/{address-id}")
-    public ResponseEntity<AddressDto> findAById(@PathVariable("address-id") Integer userId){
-        return ResponseEntity.ok(addressService.findById(userId));
+    public ResponseEntity<AddressDto> findAById(@PathVariable("address-id") Integer addressId){
+        return ResponseEntity.ok(addressService.findById(addressId));
     }
 
     @DeleteMapping("/{address-id}")
-    public ResponseEntity<Void> delete(@PathVariable("address-id") Integer userId){
-        addressService.delete(userId);
+    public ResponseEntity<Void> delete(@PathVariable("address-id") Integer addressId){
+        addressService.delete(addressId);
         return ResponseEntity.accepted().build();  // to show that our request has been treated
     }
 }
