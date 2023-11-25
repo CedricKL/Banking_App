@@ -26,8 +26,8 @@ public class ContactController {
     }
 
     @GetMapping("/{contact-id}")
-    public ResponseEntity<ContactDto> findAById(@PathVariable("contact-id") Integer userId){
-        return ResponseEntity.ok(contactService.findById(userId));
+    public ResponseEntity<ContactDto> findAById(@PathVariable("contact-id") Integer contactId){
+        return ResponseEntity.ok(contactService.findById(contactId));
     }
 
     @GetMapping("/{user-id}")
@@ -36,8 +36,8 @@ public class ContactController {
     }
 
     @DeleteMapping("/{contact-id}")
-    public ResponseEntity<Void> delete(@PathVariable("contact-id") Integer userId){
-        contactService.delete(userId);
+    public ResponseEntity<Void> delete(@PathVariable("contact-id") Integer contactId){
+        contactService.delete(contactId);
         return ResponseEntity.accepted().build();  // to show that our request has been treated
     }
 }
