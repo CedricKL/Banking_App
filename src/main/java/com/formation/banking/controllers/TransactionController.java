@@ -30,7 +30,7 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.findById(transactionId));
     }
 
-    @GetMapping("/{user-id}")
+    @GetMapping("/users/{user-id}")
     public ResponseEntity<List<TransactionDto>> findAllByUser(@PathVariable("user-id") Integer userId){
         return ResponseEntity.ok(transactionService.findAllByUserId(userId));
     }

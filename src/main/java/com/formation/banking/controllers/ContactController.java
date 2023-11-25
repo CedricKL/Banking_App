@@ -30,7 +30,7 @@ public class ContactController {
         return ResponseEntity.ok(contactService.findById(contactId));
     }
 
-    @GetMapping("/{user-id}")
+    @GetMapping("/users/{user-id}")
     public ResponseEntity<List<ContactDto>> findAllByUser(@PathVariable("user-id") Integer userId){
         return ResponseEntity.ok(contactService.findAllByUser(userId));
     }
