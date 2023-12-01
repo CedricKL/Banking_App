@@ -1,6 +1,6 @@
 package com.formation.banking.repositories;
 
-import com.formation.banking.dto.TransactionDto;
+
 import com.formation.banking.models.Transaction;
 import com.formation.banking.models.TransactionType;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +13,7 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction,Integer> {
     List<Transaction> findAllByUserId(Integer userId);
 
-    @Query("from Transaction t where t.user.id = :userId and t.creationDate between :start and :end")
+    @Query("from Transaction t where t.user.id = :userId and t.type = :type and t.creationDate between :start and :end")
     List<Transaction> findAllTransactionByPeriod(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type);
 
     @Query("select sum(t.amount) from Transaction t where t.user.id = :userId")
