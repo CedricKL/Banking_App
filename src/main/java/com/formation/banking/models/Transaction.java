@@ -25,9 +25,6 @@ public class Transaction extends AbstractEntity{
 //    @GeneratedValue
 //    private Integer id;
 
-    @Min(value = 10)
-    @Max(value = 1000000)
-    @Positive
     private BigDecimal amount;
 
     private String DestinationIban;
