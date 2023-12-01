@@ -1,7 +1,7 @@
 package com.formation.banking.controllers;
 
+import com.formation.banking.Impl.UserServiceImpl;
 import com.formation.banking.dto.UserDto;
-import com.formation.banking.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/users")  //the general url to map to this controller
 @RequiredArgsConstructor
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/")
     public ResponseEntity<Integer> save (@RequestBody UserDto userDto){
