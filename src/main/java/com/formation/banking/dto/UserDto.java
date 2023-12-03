@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 @Getter
@@ -27,6 +28,7 @@ public class UserDto {
     private String lastname;
 
     @Email(message = "You must enter a valid email like this.is.an@example.com")
+    @Column(unique = true)
     private String email;
 
     @Size(min = 8,message = "password size must be greater than 8")
