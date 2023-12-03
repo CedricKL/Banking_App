@@ -1,5 +1,6 @@
 package com.formation.banking.handler;
 
+import com.formation.banking.exceptions.EntityViolationException;
 import com.formation.banking.exceptions.ObjectValidationException;
 import com.formation.banking.exceptions.OperationNonPermittedException;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,15 @@ public class ExceptionHandler {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
                 .errorMsg(exception.getMessage())
                 .errorSource(exception.getSource())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(representation);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(EntityViolationException.class)
+    public ResponseEntity<ExceptionRepresentation> exceptionHandler(EntityViolationException exception){
+        ExceptionRepresentation representation = ExceptionRepresentation.builder()
+                .errorMsg("User already exists with the provided "+ exception.getEntityName())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(representation);

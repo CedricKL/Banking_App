@@ -2,6 +2,7 @@ package com.formation.banking.Impl;
 
 import com.formation.banking.dto.AccountDto;
 import com.formation.banking.dto.UserDto;
+import com.formation.banking.exceptions.EntityViolationException;
 import com.formation.banking.models.User;
 import com.formation.banking.repositories.UserRepository;
 import com.formation.banking.services.AccountService;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer save(UserDto dto) {
         validator.Validate(dto); //before saving, we need to check what we validate !
+        List<String> emails = findAll().stream().map(u -> u.getEmail()).collect(Collectors.toList());
+        if (emails.contains(dto.getEmail()))
+            throw new EntityViolationException("email");
         return repository.save(UserDto.toEntity(dto)).getId();
     }
 
