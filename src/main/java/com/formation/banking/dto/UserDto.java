@@ -16,20 +16,21 @@ public class UserDto {
 
     private Integer id;
 
-    @NotNull(message = "field must be fill")
-    @NotEmpty(message = "please enter a valid name")
-    @NotBlank(message = "please enter a valid name")
+    @NotNull(message = "firstname must be provided")
+    @NotEmpty(message = "please enter a valid firstname")
+    @NotBlank(message = "please enter a valid firstname")
     private String firstname;
 
-    @NotNull(message = "field must be fill")
-    @NotEmpty(message = "please enter a valid name")
-    @NotBlank(message = "please enter a valid name")
+    @NotNull(message = "lastname must be provided")
+    @NotEmpty(message = "please enter a valid lastname")
+    @NotBlank(message = "please enter a valid lastname")
     private String lastname;
 
     @Email(message = "You must enter a valid email like this.is.an@example.com")
     private String email;
 
-    @Size(min = 8,message = "size must be greater than 8")
+    @Size(min = 8,message = "password size must be greater than 8")
+    @NotBlank(message = "please enter a valid password")
     private String password;
 
     public static UserDto fromEntity(User user){
