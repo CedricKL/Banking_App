@@ -35,12 +35,12 @@ public class UserController {
         return ResponseEntity.accepted().build();
     }
 
-    @GetMapping("/validate/{user-id}")
+    @PatchMapping("/validate/{user-id}")
     public ResponseEntity<Integer> validate(@PathVariable("user-id") Integer id){
         return ResponseEntity.ok(userService.validateAccount(id));
     }
 
-    @GetMapping("/invalidate/{user-id}")
+    @PatchMapping("/invalidate/{user-id}")
     public ResponseEntity<Integer> invalidate(@PathVariable("user-id") Integer id){
         return ResponseEntity.ok(userService.invalidateAccount(id));
     }
