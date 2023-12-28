@@ -15,4 +15,6 @@ public interface StatisticService {
     BigDecimal getAccountBalance(Integer userId);
 
     BigDecimal getHighestTransactionByPeriod(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type);
+
+    BigDecimal getSumTransactionsByPeriod(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type);
 }

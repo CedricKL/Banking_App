@@ -21,4 +21,7 @@ public interface TransactionRepository extends JpaRepository<Transaction,Integer
 
     @Query("select max(abs(t.amount)) from Transaction t where t.user.id = :userId and t.type = :type and (t.creationDate between :start and :end)")
     BigDecimal findHighestTransaction(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type);
+
+    @Query("select sum(abs(t.amount)) from Transaction t where t.user.id = :userId and t.type = :type and (t.creationDate between :start and :end)")
+    BigDecimal findSumTransactionSByPeriod(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type);
 }

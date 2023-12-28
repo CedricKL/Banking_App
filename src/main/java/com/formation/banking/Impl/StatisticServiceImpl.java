@@ -34,4 +34,9 @@ public class StatisticServiceImpl implements StatisticService {
     public BigDecimal getHighestTransactionByPeriod(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type) {
         return transactionRepository.findHighestTransaction(start, end, userId, type);
     }
+
+    @Override
+    public BigDecimal getSumTransactionsByPeriod(LocalDateTime start, LocalDateTime end, Integer userId, TransactionType type) {
+        return transactionRepository.findSumTransactionSByPeriod(start,end,userId,type);
+    }
 }
